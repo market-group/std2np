@@ -2,7 +2,7 @@ language: csharp
 dist: trusty  
 env:  
   - CLI_VERSION=latest
-dotnet: 2.2.101
+dotnet: 2.2.100
 mono:  
   - latest
 os:  
