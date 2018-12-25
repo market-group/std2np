@@ -1,0 +1,22 @@
+language: csharp  
+dist: trusty  
+env:  
+  - CLI_VERSION=latest
+dotnet: 2.2.0
+mono:  
+  - latest
+os:  
+  - linux
+branches:  
+  only:
+    - master
+    - /^v[0-9]+.*/
+before-install:
+  - sudo apt-get -qq update
+  - sudo apt-get install -y --no-install-recommends unzip git libc6 libc6-dev libc6-dbg
+install: 
+  - chmod +x ./install-gitversion.sh
+  - ./install-gitversion.sh
+script:  
+  - chmod +x ./ci-script.sh
+  - ./ci-script.sh
