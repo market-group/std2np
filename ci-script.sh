@@ -59,10 +59,5 @@ for FILENAME in $NUPKG_FILES; do
 	mv -f $NUPKG_PATH/$FILENAME.symbols.nupkg $NUPKG_PATH/$FILENAME.nupkg
 done
 
-
-if [ -z "$GitVersion_PreReleaseTag" ]; then
-    echo "Pushing package..."
-    dotnet nuget push "$NUPKG_PATH/*.nupkg" --source $NUGET_FEED --api-key $NUGET_API_KEY --no-symbols true
-else
-    echo "Ignoring pushing a version for an unstable package"
-fi
+echo "Pushing package..."
+dotnet nuget push "$NUPKG_PATH/*.nupkg" --source $NUGET_FEED --api-key $NUGET_API_KEY --no-symbols true
