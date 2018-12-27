@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 SLN_FILE=`find . -name '*.sln'`
 
 echo "checking for sln list"
