@@ -4,14 +4,10 @@ set -e
 
 SLN_FILE=`find . -name '*.sln'`
 
-echo "Installinf GitVersion"
-
+echo "Installing GitVersion"
 dotnet tool install --global GitVersion.Tool --version 4.0.1-beta1-58
-
 echo "Calculating Version...."
-
 export PATH=$PATH:~/.dotnet/tools
-echo $PATH
 
 GitVersion_NuGetVersionV2=$(dotnet-gitversion /showvariable NuGetVersionV2)
 GitVersion_PreReleaseTag=$(dotnet-gitversion /showvariable PreReleaseTag)
