@@ -4,20 +4,14 @@ set -e
 
 SLN_FILE=`find . -name '*.sln'`
 
-echo "checking for sln list"
+echo "Installinf GitVersion"
 
-SLN=$(readlink -f `ls *.sln`)
-DCPROJ=`dotnet sln list | grep dcproj || true`
-if [ ! -z "$DCPROJ" ]; then
-	echo "Found dcproj files and remove them"
-	dotnet sln $SLN remove $DCPROJ
-fi
-
+dotnet tool install --global GitVersion.Tool --version 4.0.1-beta1-58
 
 echo "Calculating Version...."
 
-GitVersion_NuGetVersionV2=$(mono ./GitVersion/tools/GitVersion.exe /showvariable NuGetVersionV2)
-GitVersion_PreReleaseTag=$(mono ./GitVersion/tools/GitVersion.exe /showvariable PreReleaseTag)
+GitVersion_NuGetVersionV2=$(dotnet-gitversion /showvariable NuGetVersionV2)
+GitVersion_PreReleaseTag=$(dotnet-gitversion /showvariable PreReleaseTag)
 
 echo "Calculated version $GitVersion_NuGetVersionV2"
 echo "PreRelease Tag is $GitVersion_PreReleaseTag"
